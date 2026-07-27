@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Muhammad Adil — Seerah, Islamic Law &amp; International Humanitarian Law</title>
+<meta name="description" content="Dr. Muhammad Adil, Lecturer in Islamic Studies, Bacha Khan University Charsadda. Research on Seerah, Islamic jurisprudence, and international humanitarian law.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --night:#0B2A22; --night-deep:#071C16; --emerald:#1E8B69; --emerald-2:#2FAE86;
+  --gold:#D4AF6A; --gold-dim:#8A7245;
+  --paper:#F7F4EA; --paper-2:#EFEADA; --ink:#171510; --ink-soft:#5C5646;
+  --line:#E3DCC6;
+  --max:1180px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;} *{animation-duration:.01ms !important; transition-duration:.01ms !important;}}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:'Manrope',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+.urdu{font-family:'Noto Nastaliq Urdu',serif; direction:rtl; unicode-bidi:isolate; line-height:2.2;}
+a{color:inherit;} img,svg{display:block; max-width:100%;}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+::selection{background:var(--gold); color:#0B2A22;}
+
+/* ---------- progress dots nav ---------- */
+.dotnav{position:fixed; right:26px; top:50%; transform:translateY(-50%); z-index:200; display:flex; flex-direction:column; gap:14px;}
+.dotnav a{width:9px; height:9px; border-radius:50%; background:rgba(23,21,16,0.18); border:1px solid transparent; transition:all .25s ease; position:relative;}
+.dotnav a.active{background:var(--emerald); transform:scale(1.3);}
+.dotnav a::after{content:attr(data-label); position:absolute; right:20px; top:50%; transform:translateY(-50%); font-family:'JetBrains Mono',monospace; font-size:11px; white-space:nowrap; background:var(--night); color:var(--paper); padding:4px 9px; border-radius:5px; opacity:0; pointer-events:none; transition:opacity .2s ease;}
+.dotnav a:hover::after{opacity:1;}
+@media (max-width:900px){.dotnav{display:none;}}
+
+/* ---------- top bar ---------- */
+.topbar{position:fixed; top:0; left:0; right:0; z-index:150; display:flex; justify-content:space-between; align-items:center; padding:22px 32px; mix-blend-mode:normal;}
+.topbar .name{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; color:var(--paper); letter-spacing:-0.01em;}
+.topbar .name span{color:var(--gold);}
+.topbar nav{display:none;}
+@media (min-width:820px){ .topbar nav{display:flex; gap:28px;} }
+.topbar nav a{font-size:0.85rem; font-weight:600; color:rgba(247,244,234,0.75); letter-spacing:0.02em;}
+.topbar nav a:hover{color:var(--gold);}
+.topbar.on-light .name{color:var(--ink);}
+.topbar.on-light nav a{color:var(--ink-soft);}
+.topbar.on-light nav a:hover{color:var(--emerald);}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative; min-height:100vh; background:radial-gradient(120% 120% at 20% 0%, #133A2E 0%, var(--night) 45%, var(--night-deep) 100%);
+  color:var(--paper); display:flex; align-items:center; overflow:hidden; padding:120px 0 80px;
+}
+.motif{position:absolute; inset:0; z-index:0; opacity:0.9;}
+.motif svg{width:100%; height:100%;}
+.star-spin{transform-origin:center; animation:spin 90s linear infinite;}
+.star-spin2{transform-origin:center; animation:spin 130s linear infinite reverse;}
+@keyframes spin{from{transform:rotate(0deg);} to{transform:rotate(360deg);}}
+
+.hero-inner{position:relative; z-index:2; max-width:var(--max); margin:0 auto; padding:0 32px; width:100%;}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--gold); display:flex; align-items:center; gap:12px; margin:0 0 28px;
+}
+.eyebrow::before{content:''; width:34px; height:1px; background:var(--gold);}
+h1.big{
+  font-family:'Fraunces',serif; font-weight:600; font-size:clamp(2.6rem,7vw,5.2rem);
+  line-height:0.98; letter-spacing:-0.02em; margin:0 0 32px; max-width:14ch;
+}
+h1.big em{font-style:italic; color:var(--emerald-2); font-weight:500;}
+.hero-sub{display:flex; justify-content:space-between; align-items:flex-end; gap:40px; flex-wrap:wrap; margin-top:52px;}
+.hero-lead{font-size:1.18rem; color:rgba(247,244,234,0.78); max-width:46ch; margin:0;}
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:9px; font-weight:700; font-size:0.92rem; padding:14px 24px; border-radius:100px; transition:all .2s ease; white-space:nowrap;}
+.btn-gold{background:var(--gold); color:var(--night-deep);}
+.btn-gold:hover{background:#E5C688; transform:translateY(-2px);}
+.btn-line{border:1px solid rgba(247,244,234,0.35); color:var(--paper);}
+.btn-line:hover{border-color:var(--gold); color:var(--gold);}
+
+.stat-strip{display:flex; gap:0; margin-top:70px; border-top:1px solid rgba(247,244,234,0.15); padding-top:28px; flex-wrap:wrap;}
+.stat-strip .s{flex:1; min-width:120px; padding-right:24px;}
+.stat-strip b{font-family:'Fraunces',serif; font-size:2.3rem; font-weight:600; color:var(--gold); display:block; line-height:1;}
+.stat-strip span{font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(247,244,234,0.6); text-transform:uppercase; letter-spacing:0.06em;}
+
+.scrollcue{position:absolute; bottom:34px; left:50%; transform:translateX(-50%); z-index:2; display:flex; flex-direction:column; align-items:center; gap:8px; color:rgba(247,244,234,0.55);}
+.scrollcue .ln{width:1px; height:38px; background:linear-gradient(rgba(247,244,234,0.7), transparent); animation:down 1.8s ease-in-out infinite;}
+@keyframes down{0%{transform:scaleY(0); transform-origin:top;} 50%{transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;}}
+
+/* ---------- SECTION SCAFFOLD ---------- */
+section.page{padding:120px 0;}
+section.page.tight{padding:90px 0;}
+.section-tag{display:flex; align-items:center; gap:14px; margin-bottom:20px;}
+.section-tag .star{width:20px; height:20px; color:var(--emerald); flex:none;}
+.section-tag span{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-dim);}
+h2.head{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(1.9rem,4vw,3rem); letter-spacing:-0.02em; margin:0 0 20px; max-width:16ch;}
+.section-intro{color:var(--ink-soft); max-width:56ch; font-size:1.06rem; margin:0 0 56px;}
+
+/* ---------- ABOUT (editorial split) ---------- */
+.about-wrap{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start;}
+.pull{
+  font-family:'Fraunces',serif; font-style:italic; font-weight:500; font-size:1.7rem; line-height:1.35;
+  color:var(--night); border-left:3px solid var(--gold); padding-left:28px; margin:0;
+}
+.about-body p{color:var(--ink-soft); font-size:1.03rem; margin:0 0 18px;}
+.focus-row{display:flex; gap:0; margin-top:44px; border-top:1px solid var(--line); flex-wrap:wrap;}
+.focus-cell{flex:1; min-width:150px; padding:20px 18px 0 0; border-right:1px solid var(--line);}
+.focus-cell:last-child{border-right:none;}
+.focus-cell .n{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold-dim); display:block; margin-bottom:8px;}
+.focus-cell h4{margin:0 0 6px; font-size:0.98rem; font-weight:700;}
+.focus-cell p{margin:0; font-size:0.85rem; color:var(--ink-soft);}
+
+/* ---------- TIMELINE (asymmetric) ---------- */
+.tl2{position:relative; padding-left:32px; border-left:2px solid var(--paper-2);}
+.tl2-item{position:relative; padding-bottom:38px;}
+.tl2-item:last-child{padding-bottom:0;}
+.tl2-item::before{content:''; position:absolute; left:-38px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--paper); border:2px solid var(--emerald);}
+.tl2-year{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--emerald); font-weight:600;}
+.tl2-title{font-family:'Fraunces',serif; font-weight:600; font-size:1.2rem; margin:4px 0 2px;}
+.tl2-sub{color:var(--ink-soft); font-size:0.92rem;}
+
+/* ---------- BOOKS shelf ---------- */
+.shelf{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:0; border-top:1px solid var(--line); border-left:1px solid var(--line);}
+.tome{
+  border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:34px 26px; position:relative;
+  background:var(--paper); transition:background .25s ease;
+}
+.tome:hover{background:var(--paper-2);}
+.tome .idx{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold-dim); display:block; margin-bottom:18px;}
+.tome .t{font-family:'Noto Nastaliq Urdu',serif; direction:rtl; font-size:1.55rem; line-height:2.1; margin:0 0 20px; min-height:80px;}
+.tome .m{font-size:0.78rem; color:var(--ink-soft); border-top:1px dashed var(--line); padding-top:12px; line-height:1.5;}
+
+/* ---------- PAPERS accordion by year ---------- */
+.yr-block{border-bottom:1px solid var(--line);}
+.yr-toggle{
+  width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:22px 0;
+  display:flex; justify-content:space-between; align-items:center; font-family:'Fraunces',serif;
+}
+.yr-toggle .y{font-size:1.5rem; font-weight:600;}
+.yr-toggle .count{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-soft); display:flex; align-items:center; gap:14px;}
+.yr-toggle .chev{transition:transform .25s ease;}
+.yr-block.open .chev{transform:rotate(180deg);}
+.yr-content{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+.yr-block.open .yr-content{max-height:1200px;}
+.paper-row{display:grid; grid-template-columns:1fr auto auto; gap:20px; padding:14px 0 14px 4px; border-top:1px solid var(--line); align-items:baseline;}
+.paper-row .j{font-size:0.93rem;}
+.paper-row .vp{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-soft); white-space:nowrap;}
+.paper-row .hec{font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:3px 8px; border-radius:10px; background:rgba(30,139,105,0.14); color:var(--emerald); white-space:nowrap;}
+.paper-row .hec.x{background:rgba(92,86,70,0.12); color:var(--ink-soft);}
+
+/* ---------- AWARDS diagonal strip ---------- */
+.award-strip{display:flex; overflow-x:auto; gap:18px; padding-bottom:12px; scrollbar-width:thin;}
+.award-card2{
+  flex:0 0 240px; background:var(--night); color:var(--paper); border-radius:4px; padding:26px 24px;
+  position:relative; overflow:hidden;
+}
+.award-card2::before{content:''; position:absolute; top:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:radial-gradient(circle, rgba(212,175,106,0.25), transparent 70%);}
+.award-card2 .place{font-family:'Fraunces',serif; font-size:2.6rem; font-weight:600; color:var(--gold); line-height:1;}
+.award-card2 .org2{font-size:0.85rem; margin:14px 0 6px; color:rgba(247,244,234,0.85);}
+.award-card2 .yr2{font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(247,244,234,0.5);}
+
+/* ---------- CONFERENCES ---------- */
+.conf2{display:flex; flex-direction:column;}
+.conf2-row{display:grid; grid-template-columns:90px 1fr; gap:24px; padding:20px 0; border-top:1px solid var(--line);}
+.conf2-row:last-child{border-bottom:1px solid var(--line);}
+.conf2-row .cy2{font-family:'Fraunces',serif; font-weight:600; font-size:1.3rem; color:var(--emerald);}
+.conf2-row .ct2{font-weight:600; font-size:0.98rem; margin-bottom:3px;}
+.conf2-row .co2{font-size:0.85rem; color:var(--ink-soft);}
+
+/* ---------- CONTACT ---------- */
+.contact-block{background:var(--night); color:var(--paper); border-radius:6px; padding:70px 56px; position:relative; overflow:hidden;}
+.contact-block .motif2{position:absolute; right:-60px; bottom:-60px; width:280px; height:280px; opacity:0.35;}
+.contact-block h2{color:var(--paper); position:relative; z-index:1;}
+.contact-block p{color:rgba(247,244,234,0.75); max-width:48ch; position:relative; z-index:1;}
+.contact-links2{display:flex; gap:14px; flex-wrap:wrap; margin-top:32px; position:relative; z-index:1;}
+.contact-links2 a{border:1px solid rgba(247,244,234,0.3); padding:13px 22px; border-radius:100px; font-size:0.88rem; font-weight:700; transition:all .2s ease;}
+.contact-links2 a:hover{background:var(--gold); border-color:var(--gold); color:var(--night);}
+
+footer.foot{padding:44px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+footer.foot .f-name{font-family:'Fraunces',serif; font-weight:600;}
+footer.foot .f-links{display:flex; gap:22px; font-size:0.85rem; color:var(--ink-soft);}
+footer.foot .f-links a:hover{color:var(--emerald);}
+
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .8s ease, transform .8s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+@media (max-width:760px){
+  .about-wrap{grid-template-columns:1fr;}
+  .focus-row{flex-direction:column;}
+  .focus-cell{border-right:none; border-bottom:1px solid var(--line); padding-bottom:20px;}
+  .paper-row{grid-template-columns:1fr; gap:6px;}
+  .contact-block{padding:44px 28px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="dotnav" id="dotnav">
+  <a href="#hero" data-label="Top" class="active"></a>
+  <a href="#about" data-label="About"></a>
+  <a href="#books" data-label="Books"></a>
+  <a href="#papers" data-label="Papers"></a>
+  <a href="#awards" data-label="Awards"></a>
+  <a href="#conferences" data-label="Conferences"></a>
+  <a href="#contact" data-label="Contact"></a>
+</nav>
+
+<div class="topbar" id="topbar">
+  <a href="#hero" class="name">Dr. Muhammad <span>Adil</span></a>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#books">Books</a>
+    <a href="#papers">Papers</a>
+    <a href="#awards">Awards</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</div>
+
+<section class="hero" id="hero">
+  <div class="motif">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+      <g class="star-spin" transform="translate(560,220)">
+        <path d="M0 -180 L36 -70 L150 -60 L58 12 L92 130 L0 60 L-92 130 L-58 12 L-150 -60 L-36 -70 Z" fill="none" stroke="#D4AF6A" stroke-width="1" opacity="0.28"/>
+      </g>
+      <g class="star-spin2" transform="translate(120,560)">
+        <path d="M0 -130 L26 -50 L108 -44 L42 9 L66 94 L0 43 L-66 94 L-42 9 L-108 -44 L-26 -50 Z" fill="none" stroke="#2FAE86" stroke-width="1" opacity="0.22"/>
+      </g>
+      <g class="star-spin" transform="translate(650,650) scale(0.7)">
+        <path d="M0 -180 L36 -70 L150 -60 L58 12 L92 130 L0 60 L-92 130 L-58 12 L-150 -60 L-36 -70 Z" fill="none" stroke="#D4AF6A" stroke-width="1" opacity="0.18"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <p class="eyebrow">Lecturer, Islamic Studies — Bacha Khan University, Charsadda</p>
+    <h1 class="big">The Seerah, read as <em>living law</em>.</h1>
+    <div class="hero-sub">
+      <p class="hero-lead">Dr. Muhammad Adil researches where classical Islamic jurisprudence meets the modern language of international humanitarian law — the ethics of conflict, the protection of civilians, and the ongoing relevance of the Prophetic tradition to both.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#papers">Read the research</a>
+        <a class="btn btn-line" href="https://orcid.org/0009-0005-1633-7032" target="_blank" rel="noopener">ORCID ↗</a>
+      </div>
+    </div>
+    <div class="stat-strip">
+      <div class="s"><b>8</b><span>Books published</span></div>
+      <div class="s"><b>32</b><span>Research papers</span></div>
+      <div class="s"><b>12</b><span>Conferences</span></div>
+      <div class="s"><b>10</b><span>National awards</span></div>
+      <div class="s"><b>2018</b><span>PhD conferred</span></div>
+    </div>
+  </div>
+  <div class="scrollcue"><div class="ln"></div></div>
+</section>
+
+<main>
+
+  <section class="page" id="about">
+    <div class="wrap reveal">
+      <div class="section-tag">
+        <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.8-2.2z"/></svg>
+        <span>About</span>
+      </div>
+      <h2 class="head">A scholarly path through Seerah and law</h2>
+      <div class="about-wrap">
+        <p class="pull">"His research treats the life of the Prophet ﷺ not as history to be recounted, but as law to be applied."</p>
+        <div class="about-body">
+          <p>Dr. Muhammad Adil holds a PhD in Islamic Studies from Abdul Wali Khan University, Mardan (2018), and completed post-doctoral research at the International Research Institute, International Islamic University, Islamabad (2026). He has taught in the Department of Islamic Studies at Bacha Khan University, Charsadda since 2022.</p>
+          <p>His work has been recognized with Presidential honors from Pakistan's Ministry of Religious Affairs, and repeated awards from the International Committee of the Red Cross (ICRC) and the National Counter Terrorism Authority (NACTA) for essays on Islam, humanitarian law, and the protection of civilians in armed conflict.</p>
+        </div>
+      </div>
+      <div class="focus-row">
+        <div class="focus-cell"><span class="n">01</span><h4>Seerah</h4><p>Prophetic biography as a living source of legal reasoning.</p></div>
+        <div class="focus-cell"><span class="n">02</span><h4>Islamic Jurisprudence</h4><p>Classical fiqh applied to contemporary questions.</p></div>
+        <div class="focus-cell"><span class="n">03</span><h4>Humanitarian Law</h4><p>Comparative work with the ICRC on the ethics of armed conflict.</p></div>
+        <div class="focus-cell"><span class="n">04</span><h4>Urdu Scholarship</h4><p>Original research within the Urdu academic tradition.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page tight" id="education-sec">
+    <div class="wrap reveal">
+      <div class="section-tag"><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.8-2.2z"/></svg><span>Background</span></div>
+      <h2 class="head">Education &amp; employment</h2>
+      <div class="tl2">
+        <div class="tl2-item"><span class="tl2-year">2022 — Present</span><div class="tl2-title">Lecturer, Department of Islamic Studies</div><div class="tl2-sub">Bacha Khan University, Charsadda</div></div>
+        <div class="tl2-item"><span class="tl2-year">2026</span><div class="tl2-title">Post-Doctoral Research</div><div class="tl2-sub">International Research Institute, IIU Islamabad</div></div>
+        <div class="tl2-item"><span class="tl2-year">2025</span><div class="tl2-title">Takhasus fil Seerah</div><div class="tl2-sub">Seerat Institute and Research Center, Faisalabad</div></div>
+        <div class="tl2-item"><span class="tl2-year">2018</span><div class="tl2-title">PhD, Islamic Studies</div><div class="tl2-sub">Abdul Wali Khan University, Mardan</div></div>
+        <div class="tl2-item"><span class="tl2-year">2014</span><div class="tl2-title">M.Phil, Islamic Studies</div><div class="tl2-sub">Abdul Wali Khan University, Mardan</div></div>
+        <div class="tl2-item"><span class="tl2-year">2012</span><div class="tl2-title">Dars e Nizami</div><div class="tl2-sub">Wifaq ul Madaris al Arabia, Multan</div></div>
+        <div class="tl2-item"><span class="tl2-year">2011</span><div class="tl2-title">M.A, Islamic Studies</div><div class="tl2-sub">University of Peshawar</div></div>
+        <div class="tl2-item"><span class="tl2-year">2014 — 2022</span><div class="tl2-title">Trained Teacher</div><div class="tl2-sub">GHS Mian Khan, Education Department</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="books">
+    <div class="wrap reveal">
+      <div class="section-tag"><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.8-2.2z"/></svg><span>Publications</span></div>
+      <h2 class="head">Books</h2>
+      <p class="section-intro">Eight research-based books published between 2018 and 2026.</p>
+    </div>
+    <div class="shelf reveal">
+      <div class="tome"><span class="idx">01 / 2026</span><p class="t">سیرت خاتم الانبیاء (تحقیق و تخریج)</p><div class="m">Seerat Universal Digital Research Center, Faisalabad</div></div>
+      <div class="tome"><span class="idx">02 / 2026</span><p class="t">نبی الملاحم ﷺ</p><div class="m">Seerat Universal Digital Research Center, Faisalabad</div></div>
+      <div class="tome"><span class="idx">03 / 2025</span><p class="t">اسلامی قانون سیر اور بین الاقوامی قانون انسانیت</p><div class="m">International Committee of the Red Cross</div></div>
+      <div class="tome"><span class="idx">04 / 2023</span><p class="t">عفۃ الاصفیاء</p><div class="m">Jamia Faridia Lilbanin, Katlang</div></div>
+      <div class="tome"><span class="idx">05 / 2022</span><p class="t">الاربعین فی الوعید و البشارات من خاتم النبیین ﷺ</p><div class="m">Jamia Faridia Lilbanin, Katlang</div></div>
+      <div class="tome"><span class="idx">06 / 2021</span><p class="t">وفود بسوئے خیر الانام اور ان سے مستنبط شرعی احکام</p><div class="m">Jamia Faridia Lilbanin, Katlang</div></div>
+      <div class="tome"><span class="idx">07 / 2019</span><p class="t">دروس اصول حدیث</p><div class="m">Yaseer Books Mart, Mardan</div></div>
+      <div class="tome"><span class="idx">08 / 2018</span><p class="t">اسلامیات لازمی (جماعت نہم) گائیڈ</p><div class="m">Yaseer Books Mart, Mardan</div></div>
+    </div>
+  </section>
+
+  <section class="page tight" id="papers">
+    <div class="wrap reveal">
+      <div class="section-tag"><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.8-2.2z"/></svg><span>Publications</span></div>
+      <h2 class="head">Research papers</h2>
+      <p class="section-intro">32 papers in HEC-recognized journals, 2013–2026, grouped by year. Full titles are catalogued on <a href="https://orcid.org/0009-0005-1633-7032" target="_blank" rel="noopener" style="color:var(--emerald); font-weight:700;">ORCID</a>.</p>
+      <div id="papers-years"></div>
+    </div>
+  </section>
+
+  <section class="page" id="awards">
+    <div class="wrap reveal">
+      <div class="section-tag"><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.8-2.2z"/></svg><span>Recognition</span></div>
+      <h2 class="head">Honors &amp; awards</h2>
+      <p class="section-intro">Scroll to see all ten.</p>
+      <div class="award-strip">
+        <div class="award-card2"><span class="place">1st</span><p class="org2">Ministry of Religious Affairs — Presidential Award</p><span class="yr2">2023</span></div>
+        <div class="award-card2"><span class="place">2nd</span><p class="org2">Ministry of Religious Affairs — Presidential Award</p><span class="yr2">2019</span></div>
+        <div class="award-card2"><span class="place">3rd</span><p class="org2">Ministry of Religious Affairs — Presidential Award</p><span class="yr2">2021</span></div>
+        <div class="award-card2"><span class="place">1st</span><p class="org2">ICRC Essay Competition</p><span class="yr2">2021</span></div>
+        <div class="award-card2"><span class="place">1st</span><p class="org2">ICRC Essay Competition</p><span class="yr2">2023</span></div>
+        <div class="award-card2"><span class="place">2nd</span><p class="org2">ICRC Essay Competition</p><span class="yr2">2019</span></div>
+        <div class="award-card2"><span class="place">2nd</span><p class="org2">ICRC Essay Competition</p><span class="yr2">2024</span></div>
+        <div class="award-card2"><span class="place">1st</span><p class="org2">NACTA Essay Competition</p><span class="yr2">2024</span></div>
+        <div class="award-card2"><span class="place">Gold</span><p class="org2">Maalik Foundation Seerat Competition</p><span class="yr2">2025</span></div>
+        <div class="award-card2"><span class="place">Silver</span><p class="org2">Maalik Foundation Seerat Competition</p><span class="yr2">2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page tight" id="conferences">
+    <div class="wrap reveal">
+      <div class="section-tag"><svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 5.8L20 10l-5.8 2.2L12 18l-2.2-5.8L4 10l5.8-2.2z"/></svg><span>Engagement</span></div>
+      <h2 class="head">Conferences &amp; training</h2>
+      <div class="conf2">
+        <div class="conf2-row"><span class="cy2">2026</span><div><div class="ct2">1st International Conference on Climate Change Adaptation and Policy Pathways</div><div class="co2">Bacha Khan University, Charsadda</div></div></div>
+        <div class="conf2-row"><span class="cy2">2024</span><div><div class="ct2">Protection of Civilians in Armed Conflict — Islamic Perspective and Role of the Judiciary</div><div class="co2">Federal Judicial Academy &amp; ICRC</div></div></div>
+        <div class="conf2-row"><span class="cy2">2023</span><div><div class="ct2">Islamic Teachings on Protection of the Natural Environment During Armed Conflict</div><div class="co2">Sharia Academy, IIUI &amp; ICRC</div></div></div>
+        <div class="conf2-row"><span class="cy2">2022</span><div><div class="ct2">Addressing Sexual Violence During Armed Conflict — An Islamic Response</div><div class="co2">Sharia Academy, IIUI &amp; ICRC</div></div></div>
+        <div class="conf2-row"><span class="cy2">2019</span><div><div class="ct2">Annual National Seerat Conference</div><div class="co2">University of Karachi</div></div></div>
+        <div class="conf2-row"><span class="cy2">2017</span><div><div class="ct2">First International Conference on Contemporary Juristic Issues</div><div class="co2">HITEC University, Taxila Cantt</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="contact">
+    <div class="wrap reveal">
+      <div class="contact-block">
+        <svg class="motif2" viewBox="0 0 300 300" fill="none"><path d="M150 20 L172 110 L262 122 L188 178 L212 268 L150 214 L88 268 L112 178 L38 122 L128 110 Z" stroke="#D4AF6A" stroke-width="1"/></svg>
+        <h2 class="head">Let's collaborate</h2>
+        <p>Open to research collaboration, peer review, speaking invitations, and translation work.</p>
+        <div class="contact-links2">
+          <a href="mailto:adilfareedi@bkuc.edu.pk">Email</a>
+          <a href="https://orcid.org/0009-0005-1633-7032" target="_blank" rel="noopener">ORCID</a>
+          <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
+    <span class="f-name">Dr. Muhammad Adil</span>
+    <div class="f-links">
+      <a href="mailto:adilfareedi@bkuc.edu.pk">Email</a>
+      <a href="https://orcid.org/0009-0005-1633-7032" target="_blank" rel="noopener">ORCID</a>
+      <span>drmuhammadadil.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const paperData = {
+    "2026":[["AL-'ULŪM","Vol 7 / 1","20–35","Y"],["AL AASAR Journal","Vol 3 / 2","210–219","Y"],["Sareer-e-Khama, Tafheem Research Center","Vol 5 / 1","22–33","Y"]],
+    "2025":[["Al-Aijaz, Research Journal of Islamic Studies &amp; Humanities","Vol IX / 4","71–84","Y"],["JALT","Vol 8 / 4","94–100","Y"],["Contemporary Journal of Social Science Review","Vol 3 / 1","217–222","Y"],["Qualitative Research Journal for Social Studies","Vol 2 / 2","94–102","Y"],["Qualitative Research Journal for Social Studies","Vol 2 / 1","75–84","Y"]],
+    "2024":[["Anwar ul Seerah, Islamia University Bahawalpur","Vol 2 / 2","155–167","Y"],["Al-Raqim, Islamia University Bahawalpur","Vol 2 / 2","94–105","Y"],["Al-Mīthāq, Research Journal of Islamic Theology","Vol 3 / 2","110–123","Y"]],
+    "2023":[["Al-Irfan, Minhaj University Lahore","Vol 8 / 16","82–97","Y"],["Tahdib ul Afkar, AWKUM Mardan","Vol 10 / 1","21–37","Y"],["PALARCH'S Journal of Archaeology of Egypt/Egyptology","Vol 20 / 2","1407–1415","X"],["PALARCH'S Journal of Archaeology of Egypt/Egyptology","Vol 20 / 2","1416–1427","X"],["Al-Azhaar, University of Agriculture Peshawar","Vol 9 / 1","1–16","Y"]],
+    "2022":[["MURJIS, University of Malakand","Vol 4 / 1","77–84","Y"],["Acta-Islamica, SBBU Sheringal","Vol 10 / 2","26–43","Y"],["Al-IDAH, SZIC Peshawar University","Vol 40 / 2","261–276","Y"]],
+    "2021":[["Tahdib ul Afkar, AWKUM Mardan","Vol 8 / 1","15–27","Y"]],
+    "2020":[["Al-A'JAZ, Al-Khadim Foundation, Matiari","Vol 4 / 2","299–314","Y"]],
+    "2018":[["Tahdib ul Afkar, AWKUM Mardan","Vol 5 / 1","119–132","Y"]],
+    "2017":[["Fikr o Nazar, IIU Islamabad","Vol 54 / 4","211–226","Y"],["Journal of Islamic &amp; Religious Studies, Haripur","Vol 2 / 1","83–94","Y"],["Tahdib ul Afkar, AWKUM Mardan","Vol 4 / 1","45–54","Y"],["Tahdib ul Afkar, AWKUM Mardan","Vol 4 / 2","35–46","Y"]],
+    "2016":[["Journal of Islamic &amp; Religious Studies, Haripur","Vol 1 / 2","13–22","Y"],["Acta-Islamica, SBBU Sheringal","Vol 2 / 1","170–194","Z"]],
+    "2015":[["Hazara Islamicus, Hazara University Mansehra","Vol 4 / 1","97–104","Y"],["Al-IDAH, SZIC Peshawar University","Issue 31","146–158","Y"],["BURJIS, University of Bannu","Vol 2 / 1","1–12","Z"]],
+    "2013":[["Peshawar Islamicus, University of Peshawar","Vol 4 / 2","57–66","Y"]]
+  };
+  const container = document.getElementById('papers-years');
+  Object.keys(paperData).forEach((year, idx) => {
+    const block = document.createElement('div');
+    block.className = 'yr-block' + (idx===0 ? ' open':'');
+    const rows = paperData[year].map(p => `
+      <div class="paper-row">
+        <div class="j">${p[0]}</div>
+        <div class="vp">${p[1]}, pp. ${p[2]}</div>
+        <div class="hec ${p[3]!=='Y'?'x':''}">${p[3]}</div>
+      </div>`).join('');
+    block.innerHTML = `
+      <button class="yr-toggle">
+        <span class="y">${year}</span>
+        <span class="count">${paperData[year].length} paper${paperData[year].length>1?'s':''} <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="yr-content">${rows}</div>`;
+    container.appendChild(block);
+    block.querySelector('.yr-toggle').addEventListener('click', () => block.classList.toggle('open'));
+  });
+
+  // topbar theme swap on hero exit
+  const topbar = document.getElementById('topbar');
+  const hero = document.getElementById('hero');
+  const heroObs = new IntersectionObserver(([e]) => {
+    topbar.classList.toggle('on-light', e.intersectionRatio < 0.6);
+  }, {threshold:[0,0.6,1]});
+  heroObs.observe(hero);
+
+  // reveal
+  const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}});},{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // dot nav active state
+  const sections = ['hero','about','books','papers','awards','conferences','contact'];
+  const dots = document.querySelectorAll('.dotnav a');
+  const secObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id = e.target.id;
+        dots.forEach(d=>d.classList.toggle('active', d.getAttribute('href')==='#'+id));
+      }
+    });
+  },{threshold:0.4});
+  sections.forEach(id=>{ const el=document.getElementById(id); if(el) secObs.observe(el); });
+</script>
+
+</body>
+</html>
