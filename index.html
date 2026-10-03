@@ -656,54 +656,74 @@ footer{background:var(--maroon-dark); color:rgba(255,255,255,0.8); margin-top:0;
       galleryImages = Array.from(doc.querySelectorAll('.gallery-card img, .gitem img'));
     }
 
-    /* Curated selection from the gallery: international delegate,
-       conference presentation, commemorative award, stage recognition,
-       Gold Medal, international delegates. */
-    const wanted = [0,2,3,8,10,16];
-    const selected = wanted.map(i => galleryImages[i]).filter(Boolean);
+    /* Homepage hero uses LANDSCAPE gallery images only.
+       Portrait images are automatically excluded. */
+    const preferred = [2,3,4,7,8,10,11,12,13,14,15,16,17,18,19]
+      .map(i => galleryImages[i])
+      .filter(Boolean);
 
-    if(!selected.length) return;
+    const candidates = preferred.length ? preferred : galleryImages;
 
-    selected.forEach((img,index)=>{
-      const slide = document.createElement('div');
-      slide.className = 'home-hero-slide' + (index === 0 ? ' active' : '');
-      const src = img.getAttribute('src');
-      slide.style.setProperty('--hero-image', 'url("' + src + '")');
-
-      const heroImg = document.createElement('img');
-      heroImg.src = src;
-      heroImg.alt = '';
-      heroImg.decoding = 'async';
-      slide.appendChild(heroImg);
-      slidesHost.appendChild(slide);
-
-      const dot = document.createElement('span');
-      dot.className = 'home-hero-dot' + (index === 0 ? ' active' : '');
-      dotsHost.appendChild(dot);
-    });
-
-    const slides = Array.from(slidesHost.children);
-    const dots = Array.from(dotsHost.children);
-    if(slides.length < 2) return;
-
-    let current = 0;
-    let timer;
-
-    function next(){
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-      dots[current].classList.add('active');
-    }
-
-    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      timer = setInterval(next, 4200);
-      document.addEventListener('visibilitychange', function(){
-        if(document.hidden && timer){ clearInterval(timer); timer = null; }
-        else if(!document.hidden && !timer){ timer = setInterval(next, 4200); }
+    Promise.all(candidates.map((img) => {
+      return new Promise((resolve) => {
+        const probe = new Image();
+        const src = img.getAttribute('src');
+        probe.onload = function(){
+          resolve({
+            src: src,
+            landscape: probe.naturalWidth >= probe.naturalHeight
+          });
+        };
+        probe.onerror = function(){ resolve(null); };
+        probe.src = src;
       });
-    }
+    })).then((items) => {
+      const selected = items
+        .filter(item => item && item.landscape)
+        .slice(0, 6);
+
+      if(!selected.length) return;
+
+      selected.forEach((item,index)=>{
+        const slide = document.createElement('div');
+        slide.className = 'home-hero-slide' + (index === 0 ? ' active' : '');
+        slide.style.setProperty('--hero-image', 'url("' + item.src + '")');
+
+        const heroImg = document.createElement('img');
+        heroImg.src = item.src;
+        heroImg.alt = '';
+        heroImg.decoding = 'async';
+        slide.appendChild(heroImg);
+        slidesHost.appendChild(slide);
+
+        const dot = document.createElement('span');
+        dot.className = 'home-hero-dot' + (index === 0 ? ' active' : '');
+        dotsHost.appendChild(dot);
+      });
+
+      const slides = Array.from(slidesHost.children);
+      const dots = Array.from(dotsHost.children);
+      if(slides.length < 2) return;
+
+      let current = 0;
+      let timer;
+
+      function next(){
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        timer = setInterval(next, 4200);
+        document.addEventListener('visibilitychange', function(){
+          if(document.hidden && timer){ clearInterval(timer); timer = null; }
+          else if(!document.hidden && !timer){ timer = setInterval(next, 4200); }
+        });
+      }
+    });
   }
 
   fetch(source,{cache:'force-cache'})
