@@ -199,6 +199,105 @@ footer{background:var(--maroon-dark); color:rgba(255,255,255,0.8); margin-top:0;
 .blog-card h3{margin:0 0 10px; font-size:1.02rem; line-height:1.45;}
 .blog-card p{margin:0 0 14px; color:var(--ink-soft); font-size:0.9rem;}
 .blog-card a.readmore{display:inline-block; color:var(--maroon); font-weight:700; font-size:.85rem;}
+
+/* ---------- HOME HERO AUTO SLIDESHOW ---------- */
+.banner.home-hero{
+  position:relative;
+  min-height:360px;
+  display:flex;
+  align-items:center;
+  padding:76px 0 68px;
+  background:linear-gradient(120deg,var(--maroon-dark),var(--maroon));
+  isolation:isolate;
+}
+.banner.home-hero::after{display:none;}
+.home-hero-slides{
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  overflow:hidden;
+}
+.home-hero-slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center 35%;
+  opacity:0;
+  transform:scale(1.045);
+  transition:opacity 1.15s ease-in-out, transform 5.5s ease;
+}
+.home-hero-slide.active{
+  opacity:1;
+  transform:scale(1);
+}
+.home-hero-overlay{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(90deg,
+      rgba(42,13,16,.93) 0%,
+      rgba(42,13,16,.82) 38%,
+      rgba(92,15,23,.60) 68%,
+      rgba(42,13,16,.38) 100%);
+}
+.home-hero-vignette{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(0deg,rgba(42,13,16,.26),transparent 42%);
+}
+.home-hero .wrap{width:100%;}
+.home-hero .hero-copy{max-width:650px;}
+.home-hero .crumbs{margin-bottom:18px;}
+.home-hero h1{
+  font-size:clamp(2.25rem,5vw,3.8rem);
+  line-height:1.08;
+  text-shadow:0 3px 18px rgba(0,0,0,.24);
+}
+.home-hero .role{
+  max-width:620px;
+  font-size:1.02rem;
+  line-height:1.75;
+  color:rgba(255,255,255,.92);
+  text-shadow:0 2px 10px rgba(0,0,0,.22);
+}
+.home-hero-dots{
+  display:flex;
+  gap:8px;
+  margin-top:22px;
+  min-height:10px;
+}
+.home-hero-dot{
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  background:rgba(255,255,255,.38);
+  box-shadow:0 1px 5px rgba(0,0,0,.18);
+  transition:width .25s ease, background .25s ease;
+}
+.home-hero-dot.active{
+  width:25px;
+  background:#fff;
+}
+@media (max-width:640px){
+  .banner.home-hero{
+    min-height:330px;
+    padding:58px 0 54px;
+  }
+  .home-hero-overlay{
+    background:linear-gradient(90deg,
+      rgba(42,13,16,.94) 0%,
+      rgba(42,13,16,.84) 60%,
+      rgba(42,13,16,.56) 100%);
+  }
+  .home-hero h1{font-size:2.25rem;}
+  .home-hero .role{font-size:.94rem;}
+}
+@media (prefers-reduced-motion: reduce){
+  .home-hero-slide{transition:none;transform:none;}
+}
+
 </style>
 <link href="https://drmuhammadadil.com/" rel="canonical"/></head>
 <body>
@@ -239,11 +338,17 @@ footer{background:var(--maroon-dark); color:rgba(255,255,255,0.8); margin-top:0;
 <a href="gallery.html">Gallery</a>
 <a href="blog/">Blog</a><a href="mailto:adilfareedi@bkuc.edu.pk">Contact</a>
 </div>
-<div class="banner" id="top">
+<div class="banner home-hero" id="top">
+<div class="home-hero-slides" id="homeHeroSlides" aria-hidden="true"></div>
+<div class="home-hero-overlay" aria-hidden="true"></div>
+<div class="home-hero-vignette" aria-hidden="true"></div>
 <div class="wrap">
+<div class="hero-copy">
 <p class="crumbs"><a href="#top">Home</a> / <a href="#about">About</a> / Lecturer, Islamic Studies</p>
 <h1>Dr. Muhammad Adil</h1>
 <p class="role">Lecturer, Department of Islamic Studies — Bacha Khan University, Charsadda</p>
+<div class="home-hero-dots" id="homeHeroDots" aria-label="Hero slideshow position"></div>
+</div>
 </div>
 </div>
 <div class="wrap layout">
@@ -495,5 +600,77 @@ footer{background:var(--maroon-dark); color:rgba(255,255,255,0.8); margin-top:0;
   mclose.addEventListener('click', ()=> mmenu.classList.remove('open'));
   mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mmenu.classList.remove('open')));
 </script>
+
+<script>
+/* Homepage hero: reuse selected photographs from the existing gallery.
+   No duplicate image uploads are required. */
+(function(){
+  const slidesHost = document.getElementById('homeHeroSlides');
+  const dotsHost = document.getElementById('homeHeroDots');
+  if(!slidesHost || !dotsHost) return;
+
+  const source = 'https://raw.githubusercontent.com/drmuhammadadil/resume/0d57cd052802fff7d8ad10aeba964ebd54ec5b53/gallery.html';
+
+  function buildSlides(doc){
+    let galleryImages = Array.from(doc.querySelectorAll('img[alt^="Gallery photo"]'));
+    if(!galleryImages.length){
+      galleryImages = Array.from(doc.querySelectorAll('.gallery-card img, .gitem img'));
+    }
+
+    /* Curated selection from the gallery: international delegate,
+       conference presentation, commemorative award, stage recognition,
+       Gold Medal, international delegates. */
+    const wanted = [0,2,3,8,10,16];
+    const selected = wanted.map(i => galleryImages[i]).filter(Boolean);
+
+    if(!selected.length) return;
+
+    selected.forEach((img,index)=>{
+      const slide = document.createElement('div');
+      slide.className = 'home-hero-slide' + (index === 0 ? ' active' : '');
+      slide.style.backgroundImage = 'url("' + img.getAttribute('src') + '")';
+      slidesHost.appendChild(slide);
+
+      const dot = document.createElement('span');
+      dot.className = 'home-hero-dot' + (index === 0 ? ' active' : '');
+      dotsHost.appendChild(dot);
+    });
+
+    const slides = Array.from(slidesHost.children);
+    const dots = Array.from(dotsHost.children);
+    if(slides.length < 2) return;
+
+    let current = 0;
+    let timer;
+
+    function next(){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      timer = setInterval(next, 4200);
+      document.addEventListener('visibilitychange', function(){
+        if(document.hidden && timer){ clearInterval(timer); timer = null; }
+        else if(!document.hidden && !timer){ timer = setInterval(next, 4200); }
+      });
+    }
+  }
+
+  fetch(source,{cache:'force-cache'})
+    .then(r => { if(!r.ok) throw new Error('Gallery source HTTP ' + r.status); return r.text(); })
+    .then(markup => {
+      const doc = new DOMParser().parseFromString(markup,'text/html');
+      buildSlides(doc);
+    })
+    .catch(function(){
+      /* Keep the original maroon hero if gallery images cannot be loaded. */
+    });
+})();
+</script>
+
 </body>
 </html>
