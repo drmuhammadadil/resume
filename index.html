@@ -445,6 +445,129 @@ footer{background:var(--maroon-dark); color:rgba(255,255,255,0.8); margin-top:0;
   }
 }
 
+
+/* ---------- LATEST UPDATES ---------- */
+.latest-section{
+  padding:44px 0 10px;
+}
+.latest-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:20px;
+}
+.latest-heading .eyebrow{
+  display:block;
+  color:var(--maroon);
+  font-size:.73rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.latest-heading h2{
+  margin:0;
+  font-size:1.65rem;
+  line-height:1.2;
+}
+.latest-heading p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.88rem;
+  max-width:420px;
+}
+.latest-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.latest-card{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:22px 20px 20px;
+  box-shadow:0 5px 20px rgba(42,13,16,.06);
+  overflow:hidden;
+  min-height:220px;
+  display:flex;
+  flex-direction:column;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.latest-card::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:4px;
+  background:linear-gradient(90deg,var(--maroon),var(--gold));
+}
+.latest-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(42,13,16,.10);
+  border-color:#ddcec4;
+}
+.latest-type{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:max-content;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(122,22,32,.07);
+  color:var(--maroon);
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-bottom:15px;
+}
+.latest-type svg{
+  width:15px;
+  height:15px;
+}
+.latest-card h3{
+  margin:0 0 10px;
+  font-size:1rem;
+  line-height:1.45;
+}
+.latest-card p{
+  margin:0 0 18px;
+  color:var(--ink-soft);
+  font-size:.86rem;
+  line-height:1.65;
+}
+.latest-meta{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-size:.75rem;
+  color:var(--ink-soft);
+  border-top:1px solid var(--line);
+  padding-top:14px;
+}
+.latest-link{
+  color:var(--maroon);
+  font-weight:700;
+  white-space:nowrap;
+}
+@media (max-width:900px){
+  .latest-grid{grid-template-columns:1fr;}
+  .latest-heading{align-items:flex-start;flex-direction:column;}
+  .latest-card{min-height:auto;}
+}
+@media (max-width:640px){
+  .latest-section{padding:30px 0 2px;}
+  .latest-heading{margin-bottom:16px;gap:8px;}
+  .latest-heading h2{font-size:1.35rem;}
+  .latest-heading p{font-size:.82rem;}
+  .latest-grid{gap:13px;}
+  .latest-card{padding:19px 17px 17px;border-radius:12px;}
+  .latest-card h3{font-size:.96rem;}
+}
+
 </style>
 <link href="https://drmuhammadadil.com/" rel="canonical"/></head>
 <body>
@@ -498,6 +621,60 @@ footer{background:var(--maroon-dark); color:rgba(255,255,255,0.8); margin-top:0;
 </div>
 </div>
 </div>
+
+<section class="latest-section" aria-labelledby="latest-title">
+  <div class="wrap">
+    <div class="latest-heading">
+      <div>
+        <span class="eyebrow">Recent activity</span>
+        <h2 id="latest-title">Latest Updates</h2>
+      </div>
+      <p>Recent writing, academic engagements, awards, and professional activities.</p>
+    </div>
+
+    <div class="latest-grid">
+      <article class="latest-card">
+        <span class="latest-type">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+          Latest Blog
+        </span>
+        <h3>The Importance of Seerah Research in the Modern Age</h3>
+        <p>A recent academic reflection on the continuing relevance of Seerah research and its relationship with contemporary questions.</p>
+        <div class="latest-meta">
+          <span>Blog</span>
+          <a class="latest-link" href="blog/posts/seerah-research-modern-age.html">Read article →</a>
+        </div>
+      </article>
+
+      <article class="latest-card">
+        <span class="latest-type">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
+          Recent Event
+        </span>
+        <h3>International Seerat Festival 2025</h3>
+        <p>Presented at the International Seerat Festival 2025, contributing to scholarly discussion on Seerah and contemporary academic themes.</p>
+        <div class="latest-meta">
+          <span>Academic Event</span>
+          <a class="latest-link" href="gallery.html">View gallery →</a>
+        </div>
+      </article>
+
+      <article class="latest-card">
+        <span class="latest-type">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 12 7 22l5-3 5 3-1.5-10"/></svg>
+          Recognition
+        </span>
+        <h3>Gold Medal — National Seerat Essay Competition</h3>
+        <p>Recognition received at the National Seerat Essay Competition organized by Maalik Foundation.</p>
+        <div class="latest-meta">
+          <span>Award</span>
+          <a class="latest-link" href="#awards">View awards →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <div class="wrap layout">
 <aside class="sidecard">
 <div class="avatar-wrap">
